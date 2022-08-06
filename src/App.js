@@ -14,8 +14,7 @@ function App() {
     <AuthProvider>
      <HashRouter>
         <div>
-          <h1 className="pageHeader">LMS</h1>
-            <>
+             <>
             <Navbar/>
               </>
           
