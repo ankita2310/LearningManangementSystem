@@ -16,6 +16,7 @@ export const Navbar =()=>{
 return(
     <nav>
         <NavLink style={navLinkStyles} to="/">Home</NavLink>
+        <NavLink style={navLinkStyles} to="/aboutUs">AboutUs</NavLink>
         <NavLink style={navLinkStyles} to="/profile">Profile</NavLink>
         {
             !auth.user && (

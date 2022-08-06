@@ -9,7 +9,7 @@ export const Home=()=>{
         <div className='container-fluid' >
         <div className="row">
         <div className="col-sm-12">
-        <h3>React Bootstrap Carousel</h3>
+        <h3>Welcome To Educademy</h3>
         </div>
         </div>
         <div className="row">
@@ -22,8 +22,12 @@ export const Home=()=>{
         alt="First slide"
         />
         <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h3>Join Us</h3>
+          <p>
+            We have been preparing the students for the future. Sign up for
+            the best academic experience.
+          </p>
+          <a href="#" class="btn btn-lg btn-primary">Sign up Today</a>
         </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -33,8 +37,13 @@ export const Home=()=>{
         alt="Second slide"
         />
         <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h1>Excel</h1>
+          <p>
+            We offer a wealth of opportunities for you to learn and apply new
+            skills and help you prepare for your professional endeavors. Check
+            our courses.
+          </p>
+          <a href="#" class="btn btn-lg btn-primary">Course list</a>
         </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -44,8 +53,12 @@ export const Home=()=>{
         alt="Third slide"
         />
         <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <h1>Admissions and Aid</h1>
+          <p>
+            We provide a distinctive and supportive academic environment at an
+            affordable price. Check our pricing model for more information.
+          </p>
+          <a href="#pricing" class="btn btn-lg btn-primary">Pricing model</a>
         </Carousel.Caption>
         </Carousel.Item>
         </Carousel>
