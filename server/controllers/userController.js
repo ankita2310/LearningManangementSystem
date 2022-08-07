@@ -92,7 +92,7 @@ exports.find = async (req,res) => {
         const user = req.body
         const dbUser = await Model.findOne({email:user.email})
         if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
-            res.send(dbUser.id)
+            res.json({ id: dbUser.id, isAdmin:dbUser.isAdmin })
         }
         else {
             throw new Error('Invalid Username or Password')
