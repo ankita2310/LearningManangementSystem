@@ -1,10 +1,9 @@
 const  mongoose = require('mongoose')
 
-const Model = require('../models/model');
-const Service = require('../services/services')
-const bcrypt = require('bcrypt')
+const Model = require('../models/courseModel');
+const Service = require('../services/courseServices')
 
-exports.user_get = async (req, res) => {
+exports.course_get = async (req, res) => {
     try {
         const data = await Model.find();
         res.json(data)
@@ -14,28 +13,16 @@ exports.user_get = async (req, res) => {
     }
 }
 
-exports.user_one = async (req, res) => {
-    try {
-        const data = await Model.findById(req.params.id);
-        res.json(data)
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-}
-
 exports.create = async (req, res) => {
     const data = new Model({
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        isAdmin: true
+        courseId: req.body.courseId,
+        courseName: req.body.courseName,
+        instructor: req.body.instructor,
+        level: req.body.level,
+        enrollment: req.body.enrollment,
+        currentEnrollment: 0
     })
     try {
-        let errorMessage = Service.validateInput(req)
-        if(errorMessage !== '') {
-            throw new Error(errorMessage);
-        }
         const dataToSave = await data.save();
         res.status(200).json(dataToSave)
     }
@@ -46,15 +33,6 @@ exports.create = async (req, res) => {
 
 exports.edit = async (req, res) => {
     try {
-        let errorMessage = Service.validateInput(req)
-        if(errorMessage !== '') {
-            throw new Error(errorMessage);
-        }
-        if(typeof req.body.password === 'string') {
-            const salt = await bcrypt.genSalt(10)
-            const hashPassword = await bcrypt.hash(req.body.password, salt)
-            req.body.password = hashPassword
-        }
         const id = req.params.id;
         const updatedData = req.body;
         const options = { new: true };
@@ -71,15 +49,10 @@ exports.edit = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const user = req.body
         const id = req.params.id;
-        const dbUser = await Model.findById(id)
-        if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
+        const dbCourse = await Model.findById(id)
         const data = await Model.findByIdAndDelete(id)
-        res.send(`Document with ${user.email} has been deleted..`)
-    } else {
-        throw new Error('Invalid email or password')
-    }
+        res.send(`Course ${dbCourse.courseId} has been deleted..`)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
