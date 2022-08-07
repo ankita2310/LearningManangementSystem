@@ -69,18 +69,3 @@ exports.delete = async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 }
-
-exports.find = async (req,res) => {
-    try {
-        const user = req.body
-        const dbUser = await Model.findOne({email:user.email})
-        if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
-            res.send(`Success Logging in ${dbUser.email}`)
-        }
-        else {
-            throw new Error('Invalid Username or Password')
-        }
-    }    catch (error) {
-        res.status(400).json({ message: error.message })
-    }
-}

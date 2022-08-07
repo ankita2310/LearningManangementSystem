@@ -1,4 +1,4 @@
-const  mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const Model = require('../models/userModel');
 const Service = require('../services/userServices')
@@ -34,24 +34,24 @@ exports.create = async (req, res) => {
     })
     try {
         let errorMessage = Service.validateInput(req)
-        if(errorMessage !== '') {
+        if (errorMessage !== '') {
             throw new Error(errorMessage);
         }
         const dataToSave = await data.save();
         res.status(200).json(dataToSave)
     }
     catch (error) {
-        res.status(400).json({ message: error.message})
+        res.status(400).json({ message: error.message })
     }
 }
 
 exports.edit = async (req, res) => {
     try {
         let errorMessage = Service.validateInput(req)
-        if(errorMessage !== '') {
+        if (errorMessage !== '') {
             throw new Error(errorMessage);
         }
-        if(typeof req.body.password === 'string') {
+        if (typeof req.body.password === 'string') {
             const salt = await bcrypt.genSalt(10)
             const hashPassword = await bcrypt.hash(req.body.password, salt)
             req.body.password = hashPassword
@@ -75,29 +75,32 @@ exports.delete = async (req, res) => {
         const user = req.body
         const id = req.params.id;
         const dbUser = await Model.findById(id)
-        if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
-        const data = await Model.findByIdAndDelete(id)
-        res.send(`Document with ${user.email} has been deleted..`)
-    } else {
-        throw new Error('Invalid email or password')
-    }
+        if (bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
+            const data = await Model.findByIdAndDelete(id)
+            res.send(`Document with ${user.email} has been deleted..`)
+        } else {
+            throw new Error('Invalid email or password')
+        }
     }
     catch (error) {
         res.status(400).json({ message: error.message })
     }
 }
 
-exports.find = async (req,res) => {
+exports.find = async (req, res) => {
     try {
         const user = req.body
-        const dbUser = await Model.findOne({email:user.email})
-        if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
-            res.json({ id: dbUser.id, isAdmin:dbUser.isAdmin })
+        const dbUser = await Model.findOne({ email: user.email })
+        if (bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
+            const accessToken = Service.generateAccessToken({ user: req.body.name })
+            const refreshToken = Service.generateRefreshToken({ user: req.body.name })
+
+            res.json({ id: dbUser.id, isAdmin: dbUser.isAdmin, accessToken: accessToken, refreshToken: refreshToken })
         }
         else {
             throw new Error('Invalid Username or Password')
         }
-    }    catch (error) {
+    } catch (error) {
         res.status(400).json({ message: error.message })
     }
 }
