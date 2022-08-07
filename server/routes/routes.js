@@ -32,7 +32,7 @@ router.get('/getAllCourses', CourseController.course_get)
 router.post('/createCourse', CourseController.create)
 
 //Delete by ID Method
-router.delete('/deleteCOurse/:id', CourseController.delete)
+router.delete('/deleteCourse/:id', CourseController.delete)
 
 //Course Registration API
 

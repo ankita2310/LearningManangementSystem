@@ -13,8 +13,15 @@ exports.register = async (req,res) => {
             courseId: courseid,
             userId: studentid
         })
+        const course = await Course.findById(courseid)
+        course.enrollment = course.enrollment - 1
+        course.currentEnrollment = course.currentEnrollment + 1
+        const options = { new: true };
         try {
             const dataToSave = await data.save();
+            const result = await Course.findByIdAndUpdate(
+                courseid, course, options
+            )    
             res.status(200).json(dataToSave)
         }
         catch (error) {
@@ -32,9 +39,16 @@ exports.deregister = async (req,res) => {
 
     const isRegistered = await Register.findOne({courseId:courseid, userId:studentid})
     if(isRegistered !== null) {
-        const id = isRegistered[0].id
+        const id = isRegistered.id
+        const course = await Course.findById(courseid)
+        course.enrollment = course.enrollment + 1
+        course.currentEnrollment = course.currentEnrollment - 1
+        const options = { new: true };
+
         try {
             const data = await Register.findByIdAndDelete(id)
+            const result = await Course.findByIdAndUpdate(
+                courseid, course, options)
             res.send(`Registration for user has been deleted..`)
         }
         catch (error) {
