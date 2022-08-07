@@ -9,7 +9,8 @@ export const Home=()=>{
         <div className='container-fluid' >
         <div className="row">
         <div className="col-sm-12">
-      </div>
+        <h3>Welcome To Educademy</h3>
+        </div>
         </div>
         <div className="row">
         <div className="col-12">

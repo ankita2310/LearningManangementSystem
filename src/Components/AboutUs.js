@@ -2,7 +2,7 @@ import React from 'react'
 import skills from '../images/skills.jpg'
 import jess from '../images/jessica.jpg'
 import skills2 from '../images/skills2.png'
-import './style.css'
+import '../styles/styles.css'
 
 export const AboutUs=()=>{
     return (
