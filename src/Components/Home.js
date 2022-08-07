@@ -9,7 +9,7 @@ export const Home=()=>{
         <div className='container-fluid' >
         <div className="row">
         <div className="col-sm-12">
-        <h3>Welcome To Educademy</h3>
+       
         </div>
         </div>
         <div className="row">
@@ -27,7 +27,7 @@ export const Home=()=>{
             We have been preparing the students for the future. Sign up for
             the best academic experience.
           </p>
-          <a href="#" class="btn btn-lg btn-primary">Sign up Today</a>
+          <a href="#0" class="btn btn-lg btn-primary">Sign up Today</a>
         </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -43,7 +43,7 @@ export const Home=()=>{
             skills and help you prepare for your professional endeavors. Check
             our courses.
           </p>
-          <a href="#" class="btn btn-lg btn-primary">Course list</a>
+          <a href="#0" class="btn btn-lg btn-primary">Course list</a>
         </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
