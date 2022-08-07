@@ -8,13 +8,15 @@ import { Profile } from './Components/Profile';
 import { AuthProvider } from './utility/auth';
 import Login from './Components/Login';
 import RequireAuth from './Components/RequireAuth';
+import {Media} from './Components/Media';
 
 function App() {
   return(
     <AuthProvider>
      <HashRouter>
         <div>
-             <>
+          <h1 className="pageHeader">LMS</h1>
+            <>
             <Navbar/>
               </>
           
@@ -24,6 +26,7 @@ function App() {
               <Route exact path="/aboutUs" element={<AboutUs/>} />
               <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/media" element={<Media/>}/>
              
             </Routes>
           </div>
