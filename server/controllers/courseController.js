@@ -13,6 +13,17 @@ exports.course_get = async (req, res) => {
     }
 }
 
+exports.course_one = async (req, res) => {
+    try {
+        const data = await Model.findById(req.params.id);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+
 exports.create = async (req, res) => {
     const data = new Model({
         courseId: req.body.courseId,
