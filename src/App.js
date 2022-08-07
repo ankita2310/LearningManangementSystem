@@ -9,6 +9,8 @@ import { AuthProvider } from './utility/auth';
 import Login from './Components/Login';
 import RequireAuth from './Components/RequireAuth';
 import {Media} from './Components/Media';
+import {Membership} from './Components/Membership';
+
 
 function App() {
   return(
@@ -27,6 +29,8 @@ function App() {
               <Route path="/profile" element={<RequireAuth><Profile/></RequireAuth>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/media" element={<Media/>}/>
+              <Route path="/membership" element={<Membership/>}/>
+
              
             </Routes>
           </div>

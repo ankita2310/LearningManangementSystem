@@ -19,6 +19,8 @@ return(
         <NavLink style={navLinkStyles} to="/aboutUs">AboutUs</NavLink>
         <NavLink style={navLinkStyles} to="/profile">Profile</NavLink>
         <NavLink style={navLinkStyles} to="/media">Media</NavLink>
+        <NavLink style={navLinkStyles} to="/membership">Membership</NavLink>
+
 
         {
             !auth.user && (
