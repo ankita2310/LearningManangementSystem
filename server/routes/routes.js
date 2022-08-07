@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController')
 const CourseController = require('../controllers/courseController')
+const RegisterController = require('../controllers/registerController')
 
 
 //Post Method
@@ -32,5 +33,16 @@ router.post('/createCourse', CourseController.create)
 
 //Delete by ID Method
 router.delete('/deleteCOurse/:id', CourseController.delete)
+
+//Course Registration API
+
+//Get my Courses Method
+router.get('/getMyCourses/:studentid', RegisterController.my_courses)
+
+//Register for a course 
+router.post('/register/:studentid/:courseid', RegisterController.register)
+
+//Deregister from a course
+router.delete('/deregister/:studentid/:courseid', RegisterController.deregister)
 
 module.exports = router;

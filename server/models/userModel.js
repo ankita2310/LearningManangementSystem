@@ -16,9 +16,12 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     isAdmin: {
-        required: true,
         type: Boolean,
         default: false
+    },
+    membershipType: {
+        required: true,
+        type: String
     }
 })
 

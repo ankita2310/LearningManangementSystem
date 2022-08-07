@@ -29,7 +29,8 @@ exports.create = async (req, res) => {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password,
-        isAdmin: true
+        isAdmin: false,
+        membershipType: req.body.membershipType
     })
     try {
         let errorMessage = Service.validateInput(req)
