@@ -1,7 +1,7 @@
 const  mongoose = require('mongoose')
 
-const Model = require('../models/model');
-const Service = require('../services/services')
+const Model = require('../models/userModel');
+const Service = require('../services/userServices')
 const bcrypt = require('bcrypt')
 
 exports.user_get = async (req, res) => {
