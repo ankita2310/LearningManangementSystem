@@ -22,7 +22,6 @@ router.delete('/delete/:id', UserController.delete)
 
 router.post('/login', UserController.find)
 
-
 //Courses API
 
 //Get all Method

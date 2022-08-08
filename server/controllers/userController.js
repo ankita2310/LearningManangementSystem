@@ -95,7 +95,7 @@ exports.find = async (req, res) => {
             const accessToken = Service.generateAccessToken({ user: req.body.name })
             const refreshToken = Service.generateRefreshToken({ user: req.body.name })
 
-            res.json({ id: dbUser.id, isAdmin: dbUser.isAdmin, accessToken: accessToken, refreshToken: refreshToken })
+            res.json({ id: dbUser.id, isAdmin: dbUser.isAdmin, name: dbUser.name, membershipType: dbUser.membershipType, accessToken: accessToken, refreshToken: refreshToken })
         }
         else {
             throw new Error('Invalid Username or Password')
