@@ -13,6 +13,17 @@ exports.course_get = async (req, res) => {
     }
 }
 
+exports.course_one = async (req, res) => {
+    try {
+        const data = await Model.findById(req.params.id);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+
 exports.create = async (req, res) => {
     const data = new Model({
         courseId: req.body.courseId,
@@ -55,21 +66,6 @@ exports.delete = async (req, res) => {
         res.send(`Course ${dbCourse.courseId} has been deleted..`)
     }
     catch (error) {
-        res.status(400).json({ message: error.message })
-    }
-}
-
-exports.find = async (req,res) => {
-    try {
-        const user = req.body
-        const dbUser = await Model.findOne({email:user.email})
-        if(bcrypt.compareSync(user.password, dbUser.password) && user.email === dbUser.email) {
-            res.send(`Success Logging in ${dbUser.email}`)
-        }
-        else {
-            throw new Error('Invalid Username or Password')
-        }
-    }    catch (error) {
         res.status(400).json({ message: error.message })
     }
 }
