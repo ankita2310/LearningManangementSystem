@@ -45,7 +45,7 @@ router.patch('/editCourse/:courseid', MiddleWare.validateToken, CourseController
 router.get('/getMyCourses/:studentid', MiddleWare.validateToken, RegisterController.my_courses)
 
 //Register for a course 
-router.post('/register/:studentid/:courseid', MiddleWare.validateToken, RegisterController.register)
+router.post('/register/:studentid/:courseid', RegisterController.register)
 
 //Deregister from a course
 router.delete('/deregister/:studentid/:courseid', MiddleWare.validateToken, RegisterController.deregister)

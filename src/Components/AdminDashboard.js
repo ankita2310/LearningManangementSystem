@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { LinkContainer } from "react-router-bootstrap";
 import { Button} from "react-bootstrap";
 import LoggedInUser from "../utility/loggedInUser";
+import '../styles/adminDash.css'
 
 
 export const AdminDashboard = () => {
@@ -32,70 +33,75 @@ export const AdminDashboard = () => {
       const user=useState(LoggedInUser.getLoggedUser().name)
       
     return (
-       
-        <div>
-            <div className="row">
-            <div className="col">
-             <h3 className="fs-2 title-color">Welcome {user}</h3>
-            </div>
-            <div className="col-auto">
-                <button className="btn btn-primary pull-right" onClick={handleLogOut}>Logout</button>
-            </div>
-           
-            </div>
-            <div class="columns">
-                <ul class="price">
-                    <li class="header">Creating a New Course</li>
-                    <li class="grey">Only Admin has access to create a course</li>
-                    {/* <li>50 Courses</li> */}
-
-                     <li class="grey"><button className="btn btn-success"
+        <>
+                    <section className="stats">
+      <div className="container">
+        <h3 className="stats-heading text-center my-1 title-color">
+        Welcome to admin dashboard, {user}
+        </h3>
+        <hr></hr>
+      </div>
+      <div className="row gx-5 mt-8 p-4">
+        <div className="col-sm-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title title-color">CREATE</h5>
+              <p className="card-text">
+              <ul className="price">
+              <p><b>ACTION: </b>Creating a New Course</p>
+              <p><b>*Only Admin has access to create a course</b></p>
+              <div className="memberDiv">
+              <button className="btn btn-primary"
                         onClick={handleCreate}>CREATE
-                    </button></li> 
-                    {/* <LinkContainer to="/createcourse" className="bg-">
-                    <Button variant="secondary">CREATE</Button>
-                    </LinkContainer> */}
-                    
-                 
-           
+                    </button>
+               </div>   
                 </ul>
+              </p>
             </div>
-
-
-            <div class="columns">
-                <ul class="price">
-                    <li class="header">Editing a Course</li>
-                    <li class="grey">Admin has access to edit a course</li>
-                    {/* <li>100 Courses</li> */}
-                    <li class="grey"><button className="btn btn-success"
-                        onClick={handleAllCourses}>EDIT
-                    </button></li> 
-
-
-                </ul>
-
-                <br></br>
-                <br></br>
-
-                <li class="grey"><a href="#/profile" class="button"> Welcome Admin </a></li>
-
-            </div>
-
-
-            <div class="columns">
-                <ul class="price">
-                    <li class="header">Delete a Course</li>
-                    <li class="grey">Admin has access to delete a course</li>
-                    {/* <li>200 Courses</li> */}
-
-                    <li class="grey"><button className="btn btn-success"
-                        onClick={handleDelete}>DELETE
-                    </button></li> 
-                </ul>
-            </div>
-
-
+          </div>
         </div>
+        <div className="col-sm-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title title-color">EDIT</h5>
+              <p className="card-text">
+              <ul className="price">
+              <p><b>ACTION: </b>Editing a Course</p>
+              <p><b>*Admin has access to edit a course</b></p>
+              <div className="memberDiv"><button className="btn btn-primary"
+                        onClick={handleAllCourses}>EDIT
+                    </button>
+                    </div>
+                </ul>
+                </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-4">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title title-color">DELETE</h5>
+              <p className="card-text">
+              <ul className="price">
+              <p><b>ACTION: </b>Delete a Course</p>
+                    <p><b>*Admin has access to delete a course</b></p>
+                    <div className="memberDiv">
+                    <button className="btn btn-primary"
+                        onClick={handleDelete}>DELETE
+                    </button>
+                    </div>
+                </ul>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="memberDiv">
+      <button className="btn btn-primary pull-right" onClick={handleLogOut}>Logout</button>
+      </div>
+    </section>
+        </>
+       
 
     )
 }
