@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Technologies Used
+
+HTML
+JavaScript (ES6)
+Developed using ReactJS, react-bootstrap
+NodeJS , Express, CORS
+Mongoose  to interact with MongoDB Database
+Authentication using JWT
+Used HTTP REST API for CRUD operation
+Used Fetch API to fetch and update data on client side
