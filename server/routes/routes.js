@@ -36,6 +36,9 @@ router.post('/createCourse', MiddleWare.validateToken, CourseController.create)
 //Delete by ID Method
 router.delete('/deleteCourse/:id', MiddleWare.validateToken, CourseController.delete)
 
+//Edit Course
+router.patch('/editCourse/:courseid', MiddleWare.validateToken, CourseController.edit)
+
 //Course Registration API
 
 //Get my Courses Method
