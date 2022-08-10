@@ -28,7 +28,7 @@ router.post('/login', UserController.find)
 router.get('/getAllCourses', CourseController.course_get)
 
 //Get One Method
-router.get('/getCourse/:id', MiddleWare.validateToken, CourseController.course_one)
+router.get('/getCourse/:id', CourseController.course_one)
 
 //Post Method
 router.post('/createCourse', MiddleWare.validateToken, CourseController.create)
