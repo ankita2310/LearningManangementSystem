@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema({
     courseId: {
         required: true,
-        type: String,
-        unique: true
+        type: String
     },
     userId: {
         required: true,

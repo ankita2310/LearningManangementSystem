@@ -29,7 +29,7 @@ exports.create = async (req, res) => {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password,
-        isAdmin: false,
+        isAdmin: req.body.isAdmin,
         membershipType: req.body.membershipType
     })
     try {
@@ -37,8 +37,10 @@ exports.create = async (req, res) => {
         if (errorMessage !== '') {
             throw new Error(errorMessage);
         }
-        const dataToSave = await data.save();
-        res.status(200).json(dataToSave)
+        let dataToSave = await data.save();
+        const accessToken = Service.generateAccessToken({ user: req.body.name })
+        const refreshToken = Service.generateRefreshToken({ user: req.body.name })
+        res.status(200).json({email: dataToSave.email, name: dataToSave.name, password: dataToSave.password, isAdmin: dataToSave.isAdmin, membershipType: dataToSave.membershipType, _id: dataToSave._id,__v: dataToSave.__v, accessToken: accessToken, refreshToken: refreshToken})
     }
     catch (error) {
         res.status(400).json({ message: error.message })

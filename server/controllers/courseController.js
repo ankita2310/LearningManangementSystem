@@ -1,4 +1,5 @@
 const Model = require('../models/courseModel');
+const Register = require('../models/registrationModel')
 
 exports.course_get = async (req, res) => {
     try {
@@ -35,7 +36,7 @@ exports.create = async (req, res) => {
         res.status(200).json(dataToSave)
     }
     catch (error) {
-        res.status(400).json({ message: error.message})
+        res.status(400).json({ message: error.message })
     }
 }
 
@@ -59,8 +60,14 @@ exports.delete = async (req, res) => {
     try {
         const id = req.params.id;
         const dbCourse = await Model.findById(id)
-        const data = await Model.findByIdAndDelete(id)
-        res.send(`Course ${dbCourse.courseId} has been deleted..`)
+        const registrations = await Register.find({ courseId: id })
+        if (registrations !== null) {
+            res.status(400).json({ message: 'Cannot delete a course with active registrations' })
+        }
+        else {
+            const data = await Model.findByIdAndDelete(id)
+            res.send(`Course ${dbCourse.courseId} has been deleted..`)
+        }
     }
     catch (error) {
         res.status(400).json({ message: error.message })
