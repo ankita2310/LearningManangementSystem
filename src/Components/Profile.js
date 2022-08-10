@@ -1,71 +1,54 @@
 import React from "react";
-import { useAuth } from "../utility/auth";
-import { useNavigate } from "react-router-dom";
-import react, { useState } from 'react';
-import {useEffect} from 'react';
-//import './MyProfile.scss';
-//import MyProfileEditForm from './MyProfileEditForm'
+import { Navigate, useNavigate } from "react-router-dom";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import '../styles/styles.css';
+import MyCourses from './MyCourses.js';
+import AllCourses from './AllCourses.js';
+import LoggedInUser from "../utility/loggedInUser";
 
-export const Profile=()=>{
-    const auth=useAuth();
+export const Profile = () => {
+    const auth=LoggedInUser.getLoggedUser();
     const navigate=useNavigate()
     const handleLogOut=()=>{
-            auth.logout()
+        localStorage.removeItem('token');
+        LoggedInUser.setLoggedUser('','','','');
             navigate('/')
     }
-    return(
-        <div>Welcome auth.user <br/>
-        <button onClick={handleLogOut}>LogOut</button>
-        </div>
-    )
-}
-
-/* function MyProfile({match}) {
-    useEffect(() => {
-        fetchProfile(); 
-    }, []);
-    const [isOpen, setIsOpen] = useState(false);
-    const [profileDetails, setProfileDetails] = useState({});
-
-    const fetchProfile = async() =>{
-        const fetchProfile = await fetch(`http://localhost:9000/app/users/${match.params.userId}`);
-        const profileDetails = await fetchProfile.json();
-        console.log(profileDetails);
-        setProfileDetails(profileDetails);
-    }
-
+    console.log(`auth is ${auth.id}`)
+    if(auth.isAdmin === true)
+    {
+        return <Navigate to="/admindashboard" />
+       }
+   if(typeof auth.id === "undefined"){
+    return <Navigate to="/" />
+   }
     return (
-        <section className="section-myProfile-container">
-            <div className="section-myProfile-box">
-                <div className="overlay">
-                    <div className="section-myProfile-image">
-
-                    </div>
-                    <h1 className="section-myProfile-image-caption">My Profile</h1>
-                </div>
-
-                <div className="flex-box">
-                    <div className="section-myProfile-editable">
-                        <p className="para">{profileDetails.name}</p>
-                        <p className="para">{profileDetails.email}</p>
-                    </div>
-
-                    <div className="section-myProfile-editableOptions">
-                        <button className="btn-text-green" onClick={() => setIsOpen(!isOpen)}>Edit</button>
-                    </div>
-                </div>
-                {isOpen && (
-                    <div>
-                   {/*  <MyProfileEditForm profileDetails={profileDetails} /> */
-                   /*  </div>
-                )}
-
-
+        <div>
+       <div className="row">
+            <div className="col">
+             <h3 className="one text-white">Welcome {auth.name}</h3>
+             <h5 className="one text-white">You are a {auth.membershipType} member</h5>
             </div>
-        </section>
+            <div className="col-auto">
+                <button className="btn btn-primary pull-right" onClick={handleLogOut}>Logout</button>
+            </div>
+           
+            </div>
+            <Tabs
+                defaultActiveKey="allcourses"
+                id="uncontrolled-tab-example"
+                className="mb-3">
+                <Tab eventKey="allcourses" title="All Courses">
+                 <AllCourses/>
+                </Tab>
+                <Tab eventKey="mycourses" title="My Courses" >
+                <MyCourses/>
+                </Tab>
+            </Tabs>
+        </div>
+
+
     )
 }
 
-
-export default MyProfile;
- */
