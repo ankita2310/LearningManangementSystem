@@ -36,7 +36,7 @@ export const AdminDashboard = () => {
         <div>
             <div className="row">
             <div className="col">
-             <h3 className="one text-white">Welcome {user}</h3>
+             <h3 className="fs-2 title-color">Welcome {user}</h3>
             </div>
             <div className="col-auto">
                 <button className="btn btn-primary pull-right" onClick={handleLogOut}>Logout</button>

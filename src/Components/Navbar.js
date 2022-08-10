@@ -1,19 +1,8 @@
 
 import React from 'react';
 import {Nav, NavLink, Bars, NavMenu,NavBtn, NavBtnLink } from './NavbarElements.js';
-import { useAuth } from '../utility/auth';
-
 
 export const Navbar =()=>{
-    /*
-    const navLinkStyles=({ isActive }) =>{
-        return{
-            fontWeight: isActive ? 'bold' : 'normal',
-            textDecoration: isActive ? 'none' : 'underline',
-        }
-    }
-    */
-    const auth=useAuth()
 
 return(
     <> 
@@ -28,11 +17,9 @@ return(
                 <NavLink to="/profile" activeStyles>Profile</NavLink>
                 <NavLink to="/media" activeStyles>News/Events</NavLink>
                 <NavLink to="/membership" activeStyles>Membership</NavLink>
-                {
-            !auth.user && (
+               
                 <NavLink to="/login">Login</NavLink>
-            )
-            }
+            
             <NavBtn>
                 <NavBtnLink to="/signUp">Sign Up</NavBtnLink>
             </NavBtn>
