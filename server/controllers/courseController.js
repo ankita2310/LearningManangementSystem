@@ -1,7 +1,4 @@
-const  mongoose = require('mongoose')
-
 const Model = require('../models/courseModel');
-const Service = require('../services/courseServices')
 
 exports.course_get = async (req, res) => {
     try {
@@ -44,7 +41,7 @@ exports.create = async (req, res) => {
 
 exports.edit = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.params.courseid;
         const updatedData = req.body;
         const options = { new: true };
         const result = await Model.findByIdAndUpdate(
