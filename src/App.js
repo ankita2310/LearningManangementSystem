@@ -2,6 +2,7 @@ import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Route, HashRouter, Routes } from "react-router-dom";
 import React from 'react';
+import {FooterContainer} from './containers/footer';
 import {Home} from './Components/Home';
 import {AboutUs} from './Components/AboutUs';
 import { Profile } from './Components/Profile';
@@ -44,6 +45,7 @@ function App() {
              </Routes>
            
           </div>
+          <FooterContainer/>
         </div>
       </HashRouter>
     </AuthProvider>

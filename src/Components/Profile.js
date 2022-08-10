@@ -27,8 +27,8 @@ export const Profile = () => {
         <div>
        <div className="row">
             <div className="col">
-             <h3 className="one text-white">Welcome {auth.name}</h3>
-             <h5 className="one text-white">You are a {auth.membershipType} member</h5>
+             <h3 className="fs-2 title-color">Welcome {auth.name}</h3>
+             <h5 className="fs-6 title-color">You are a {auth.membershipType} member</h5>
             </div>
             <div className="col-auto">
                 <button className="btn btn-primary pull-right" onClick={handleLogOut}>Logout</button>

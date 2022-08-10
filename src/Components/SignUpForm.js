@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link, Navigate } from "react-router-dom";
-import '../styles/login.css';
+import '../styles/signup.css';
 import LoggedInUser from "../utility/loggedInUser";
 
 
@@ -13,7 +13,7 @@ const initState = {
   email: "",
   password: "",
   name: "",
-  membershipType:"",
+  membershipType:"basic",
   hasAgreed: false,
   redirectToReferer:false,
   isAdmin:false,
@@ -31,7 +31,7 @@ class SignUpForm extends Component {
       email: "",
       password: "",
       name: "",
-      membershipType:"",
+      membershipType:"basic",
       hasAgreed: false,
       redirectToReferer:false,
       isAdmin:false,
@@ -121,8 +121,10 @@ class SignUpForm extends Component {
     .then(data => {
         if(data.error){
             this.setState({error:data.error})
+            
         } 
         else{
+          
           const loggedUser={
             id:data._id,
             isAdmin:data.isAdmin,
@@ -152,7 +154,7 @@ return fetch("http://localhost:4000/lms/create", {
     .then(response => {
         return response.json();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(`error is ${err}`));
 }
 
   
@@ -217,10 +219,10 @@ return fetch("http://localhost:4000/lms/create", {
             />
             </div>
             <div style={{color:"red", fontSize:12}}>{this.state.emailError}</div>
-            <label className="formFieldLabel" htmlFor="memType">
+            <label className="formFieldLabel" htmlFor="membershipType">
               Select Membership
             </label><span> </span>
-            <select name="memType" id="memType" className="formFieldInput" onChange={this.handleChange} value={this.state.memType}>
+            <select name="membershipType" id="membershipType" className="formFieldInput" onChange={this.handleChange} value={this.state.membershipType}>
                 <option value="basic">Basic</option>
                 <option value="pro">Pro</option>
                 <option value="premium">Premium</option>

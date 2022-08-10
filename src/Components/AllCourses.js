@@ -32,15 +32,12 @@ class AllCourses extends React.Component {
     this.state ={
       coursesData: [],
     userAdmin:LoggedInUser.getLoggedUser().isAdmin,
-    editFlag:false
+    editFlag:false,
+    id : ""
     };
     console.log(this.state.userAdmin)
     }
     
-   
-    
-  
-
  
     componentDidMount() 
     {
@@ -53,18 +50,51 @@ class AllCourses extends React.Component {
             });}
   
            
-     handleEdit = () => {
-            this.setState({editFlag:true})
-            console.log(this.state.editFlag)
-            console.log("inside button")
+    //  handleEdit = () => {
+    //         this.setState({editFlag:true})
+    //         console.log(this.state.editFlag)
+    //         console.log("inside button")
          
-          }; 
+    //       }; 
+
+          handleClick = ev => {
+            if(this.state.isAdmin)
+            {
+              this.setState({editFlag:true})
+              console.log(this.state.editFlag)
+              console.log("admin edit")
+            }
+            else
+            {
+            this.setState({id: ev.currentTarget.value})
+            
+            console.log(ev.currentTarget.value)
+
+            console.log("inside enroll")
+            }
+          }
+
+          
+
+        /*   handleEnroll = () => {
+           console.log(this.state.coursesData[0].courseName)
+            this.setState({enrollFlag:true})
+            console.log(this.state.enrollFlag)
+            console.log("inside enroll")
+            console.log(this.state.coursesData.courseName)
+         
+          };  */
   
 
   render() {
 
     if(this.state.editFlag){
       console.log(this.state.editFlag)
+      return <Navigate to="/editcourse" />
+    }
+
+    if(this.state.enrollFlag){
+      console.log(this.state.enrollFlag)
       return <Navigate to="/editcourse" />
     }
     
@@ -120,17 +150,20 @@ class AllCourses extends React.Component {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <Button size="small" color="primary" disabled={!this.state.userAdmin} >
-        Start course
+      
+      {/* <Button size="small" color="primary" disabled={this.state.userAdmin} onClick={() => enroll(this.state.coursesData)}  >
+        Enroll course
         </Button>
         {/* {this.state.isAdmin ? <Button size="small" color="primary" onClick={this.handleEdit}>
           Edit course
         </Button> : null} */}
 
-        <Button size="small" color="primary" onClick={this.handleEdit} disabled={this.state.userAdmin} >
+      {/*   <Button size="small" color="primary" onClick={this.handleEdit} disabled={!this.state.userAdmin} >
         Edit course
+        </Button> */} 
+
+        <Button color="primary" onClick={this.handleClick} value = {elem._id}>{this.state.userAdmin ? <h3> Edit course</h3> : <h3>Enroll course</h3>}
         </Button>
-       
       </CardActions>
        
     </Card>
